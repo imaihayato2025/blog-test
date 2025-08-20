@@ -3,7 +3,7 @@ import Hero from "../../components/Hero";
 export default function Home() {
   return (
     <>
-      <Hero title="Home" subtitle="ホームだよー" imageOn />
+      <Hero title="CUBE" subtitle="アウトプットしていくサイト" imageOn />
     </>
   );
 }
