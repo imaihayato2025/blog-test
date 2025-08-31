@@ -10,6 +10,13 @@ import {
   TwoColumnSidebar,
 } from "../../../components/TwoColumn";
 
+export const metadata = {
+  title: "アバウト",
+  openGraph: {
+    title: "アバウト",
+  },
+};
+
 export default function About() {
   return (
     <Container>

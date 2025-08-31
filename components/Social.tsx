@@ -9,19 +9,19 @@ import {
 export default function Social() {
   return (
     <ul className={styles.list}>
-      <li>
+      <li className={styles.list}>
         <a href="https://twitter.com/">
           <FontAwesomeIcon icon={faTwitter} />
           <span className="sr-only">twitter</span>
         </a>
       </li>
-      <li>
+      <li className={styles.list}>
         <a href="https://www.facebook.com/">
           <FontAwesomeIcon icon={faFacebookF} />
           <span className="sr-only">facebook</span>
         </a>
       </li>
-      <li>
+      <li className={styles.list}>
         <a href="https://github.com/">
           <FontAwesomeIcon icon={faGithub} />
           <span className="sr-only">github</span>
