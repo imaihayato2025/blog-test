@@ -12,6 +12,11 @@ export async function getPostBySlug(slug: string) {
       endpoint: "blogs",
       queries: { filters: `slug[equals]${slug}` },
     });
+    const posts = await client.get({
+      endpoint: "blogs",
+      queries: { limit: 10 },
+    });
+
     return post.contents[0];
   } catch (err) {
     console.log("~~ getPostBySlug~~", err);

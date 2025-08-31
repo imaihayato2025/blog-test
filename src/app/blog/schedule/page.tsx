@@ -1,4 +1,4 @@
-import { getPostBySlug } from "../../lib/api";
+import { getPostBySlug } from "../../lib/microcms";
 import Container from "../../../../components/Container";
 
 export default async function Schedule() {
