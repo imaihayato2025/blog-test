@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import styles from "../styles/twocolumn.module.css";
 
 type Props = {
-  children: ReactNode;
+  children?: ReactNode;
 };
 
 export function TwoColumn({ children }: Props) {
