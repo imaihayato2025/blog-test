@@ -2,6 +2,14 @@ import Image from "next/image";
 import { getPostBySlug } from "../../lib/microcms";
 import Container from "../../../../components/Container";
 import PostHeader from "../../../../components/PostHeader";
+import {
+  TwoColumn,
+  TwoColumnMain,
+  TwoColumnSidebar,
+} from "../../../../components/TwoColumn";
+import PostBody from "../../../../components/PostBody";
+import ConvertBody from "../../../../components/ConvertBody";
+import PostCategories from "../../../../components/PostCategories";
 
 export default async function Schedule() {
   const slug = "schedule";
@@ -10,6 +18,10 @@ export default async function Schedule() {
   if (!post) {
     return <div>記事が見つかりませんでした。</div>;
   }
+
+  const categories = post.category
+    ? [{ name: post.category.name, slug: post.category.id }]
+    : [];
 
   // post から eyecatch を取り出す（なければデフォルト画像にする）
   const eyecatch = post.eyecatch ?? {
@@ -37,7 +49,18 @@ export default async function Schedule() {
             priority
           />
         </figure>
-        <div dangerouslySetInnerHTML={{ __html: post.content }} />
+        <TwoColumn>
+          <TwoColumnMain>
+            <PostBody>
+              <ConvertBody contentHTML={post.content} />
+            </PostBody>
+          </TwoColumnMain>
+          <TwoColumnSidebar>
+            <TwoColumnSidebar>
+              {post.categories && <PostCategories categories={categories} />}
+            </TwoColumnSidebar>
+          </TwoColumnSidebar>
+        </TwoColumn>
       </article>
     </Container>
   );
