@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { getPostBySlug } from "../../lib/microcms";
+import { getPostBySlug, getAllSlugs } from "../../lib/microcms";
 import Container from "../../../../components/Container";
 import PostHeader from "../../../../components/PostHeader";
 import {
@@ -11,8 +11,12 @@ import PostBody from "../../../../components/PostBody";
 import ConvertBody from "../../../../components/ConvertBody";
 import PostCategories from "../../../../components/PostCategories";
 
-export default async function Schedule() {
-  const slug = "schedule";
+type Props = {
+  params: { slug: string };
+};
+
+export default async function BlogPage({ params }: Props) {
+  const { slug } = params; // URLのslugを取得
   const post = await getPostBySlug(slug);
 
   if (!post) {
@@ -23,7 +27,6 @@ export default async function Schedule() {
     ? [{ name: post.category.name, slug: post.category.id }]
     : [];
 
-  // post から eyecatch を取り出す（なければデフォルト画像にする）
   const eyecatch = post.eyecatch ?? {
     url: "/images/default.jpg",
     width: 1920,
@@ -36,15 +39,15 @@ export default async function Schedule() {
         <PostHeader
           title={post.title}
           subtitle="blog Article"
-          publishDate={post.publishedAt} // ← publishedAtを渡す
+          publishDate={post.publishedAt}
         />
         <figure>
           <Image
             src={eyecatch.url}
             alt=""
-            layout="responsive"
-            width={eyecatch.width}
-            height={eyecatch.height}
+            width={500} // 表示したい横幅に調整
+            height={200} // 縦幅も調整
+            style={{ width: "100%", height: "auto" }}
             sizes="(min-width: 1152px) 1152px,100vw"
             priority
           />
@@ -56,9 +59,7 @@ export default async function Schedule() {
             </PostBody>
           </TwoColumnMain>
           <TwoColumnSidebar>
-            <TwoColumnSidebar>
-              {post.categories && <PostCategories categories={categories} />}
-            </TwoColumnSidebar>
+            {post.category && <PostCategories categories={categories} />}
           </TwoColumnSidebar>
         </TwoColumn>
       </article>
