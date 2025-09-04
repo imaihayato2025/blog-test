@@ -2,7 +2,7 @@ import styles from "../styles/social.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTwitter,
-  faFacebookF,
+  faInstagram,
   faGithub,
 } from "@fortawesome/free-brands-svg-icons";
 
@@ -16,9 +16,9 @@ export default function Social() {
         </a>
       </li>
       <li className={styles.list}>
-        <a href="https://www.facebook.com/">
-          <FontAwesomeIcon icon={faFacebookF} />
-          <span className="sr-only">facebook</span>
+        <a href="https://www.instagram.com/">
+          <FontAwesomeIcon icon={faInstagram} />
+          <span className="sr-only">instagram</span>
         </a>
       </li>
       <li className={styles.list}>
